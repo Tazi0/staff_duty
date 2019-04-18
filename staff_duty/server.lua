@@ -13,10 +13,10 @@ local staff = "taz.staff"
 RegisterCommand("staffduty",function(source, args)
   local name = GetPlayerName(source) -- Gets player name
   if IsPlayerAceAllowed(source, staff) and has_value(people, name) then
-    TriggerClientEvent('chat:addMessage', -1, { args = { " ^7[ ^3Staff Duty ^7] (^3 " .. name.." ^7)", " is now ^8OFF ^7duty" }, color = 255, 0, 0 })
+    TriggerClientEvent('chat:addMessage', -1, { args = { "^7[ ^3Staff Duty ^7] (^3 " .. name.." ^7)", " is now ^8OFF ^7duty" }, color = 255, 0, 0 })
     removeFirst(people, name) --Set table to remove the name
   elseif IsPlayerAceAllowed(source, staff) and not has_value(people, name) then
-    TriggerClientEvent('chat:addMessage', -1, { args = { " ^7[ ^3Staff Duty ^7] (^3 " .. name.." ^7)", " is now ^2ON ^7duty"}, color = 255, 0, 0 })
+    TriggerClientEvent('chat:addMessage', -1, { args = { "^7[ ^3Staff Duty ^7] (^3 " .. name.." ^7)", " is now ^2ON ^7duty"}, color = 255, 0, 0 })
     table.insert(people, name)
   end
 end, true)
