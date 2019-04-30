@@ -10,15 +10,15 @@ local oneskin = false
 
 -- If you use Rolechat (Automated) then this is where you put your skins.
 -- These uses the same ace's
-local tmod_dutyskin = ""
-local mod_dutyskin = ""
-local admin_dutyskin = ""
-local snr_dutyskin = ""
-local management_dutyskin = ""
-local owner_dutyskin = ""
+local tmod_dutyskin = ''
+local mod_dutyskin = ''
+local admin_dutyskin = ''
+local snr_dutyskin = ''
+local management_dutyskin = ''
+local owner_dutyskin = ''
 
 -- If oneskin = true then they will all get this skin
-local onskin_skin = ""
+local onskin_skin = ''
 
 -- When they go off duty this is what there skin will be
 local offdutyskin = ""
@@ -34,27 +34,25 @@ RegisterCommand("staffduty",function(source, args)
   if IsPlayerAceAllowed(source, staff) and has_value(people, name) then
     TriggerClientEvent('chat:addMessage', -1, { args = { "^7[ ^3Staff Duty ^7] (^3 " .. name.." ^7)", " is now ^8OFF ^7duty" }, color = 255, 0, 0 })
     removeFirst(people, name) --Set table to remove the name
-    ChangeToSkin(offdutyskin)
+    TriggerClientEvent("applyskin", source, offdutyskin)
   elseif IsPlayerAceAllowed(source, staff) and not has_value(people, name) then
     TriggerClientEvent('chat:addMessage', -1, { args = { "^7[ ^3Staff Duty ^7] (^3 " .. name.." ^7)", " is now ^2ON ^7duty"}, color = 255, 0, 0 })
     table.insert(people, name)
     -- Giving the right skin to the person
     if not oneskin then
-      if IsPlayerAceAllowed(source, "taz.owner") then
-        ChangeToSkin(tmod_dutyskin)
-      elseif IsPlayerAceAllowed(source, "taz.management") then
-        ChangeToSkin(mod_dutyskin)
+      if IsPlayerAceAllowed(source, "taz.management") then
+        TriggerClientEvent("taz:applyskin", source, management_dutyskin)
       elseif IsPlayerAceAllowed(source, "taz.snradmin") then
-        ChangeToSkin(admin_dutyskin)
+        TriggerClientEvent("taz:applyskin", source, snr_dutyskin)
       elseif IsPlayerAceAllowed(source, "taz.admin") then
-        ChangeToSkin(snr_dutyskin)
+        TriggerClientEvent("taz:applyskin", source, admin_dutyskin)
       elseif IsPlayerAceAllowed(source, "taz.mod") then
-        ChangeToSkin(management_dutyskin)
+        TriggerClientEvent("taz:applyskin", source, mod_dutyskin)
       elseif IsPlayerAceAllowed(source, "taz.tmod") then
-        ChangeToSkin(owner_dutyskin)
+        TriggerClientEvent("taz:applyskin", source, tmod_dutyskin)
       end
     else
-      ChangeToSkin(onskin_skin)
+      TriggerClientEvent("taz:applyskin", source, onskin_skin)
     end
   end
 end, true)
