@@ -30,6 +30,15 @@ RegisterCommand("staffduty",function(source, args)
   end
 end, true)
 
+AddEventHandler('playerDropped', function(reason) 
+  name = GetPlayerName(source)
+  if has_value(people, name) then
+    TriggerClientEvent('chat:addMessage', -1, { args = { "^7[ ^3Staff Duty ^7] (^3 " .. name.." ^7)", " is now ^8OFF ^7duty" }, color = 255, 0, 0 }) -- Sends message in chat
+    removeFirst(people, name) -- Set table to remove the name
+    sendToDiscord(name, "is now **OFF** duty") -- Sends message to discord
+  end
+end)
+
 function has_value (tab, val)
     for index, value in ipairs(tab) do
         if value == val then
