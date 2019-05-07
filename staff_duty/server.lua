@@ -13,8 +13,6 @@ local staff = "taz.staff"
 -- Editing stuff below this line will be at your own risk
 local people = { }
 
-local date = os.date('*t')
-
 RegisterCommand("staffduty",function(source, args)
   local name = GetPlayerName(source) -- Gets player name
 
@@ -58,9 +56,7 @@ function removeFirst(tbl, val)
 end
 
 function sendToDiscord(name, message)
-  if date.hour < 10 then date.hour = '0' .. tostring(date.hour) end
-  if date.min < 10 then date.min = '0' .. tostring(date.min) end
-  if date.sec < 10 then date.sec = '0' .. tostring(date.sec) end
+  local date = os.date('*t')
   local connect = {
         {
             ["color"] = "8663711",
