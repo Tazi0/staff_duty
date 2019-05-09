@@ -6,6 +6,7 @@
 
 local DISCORD_NAME = "Staff Duty"
 local DISCORD_URL = ""
+local DISCORD_IMAGE = "https://pbs.twimg.com/profile_images/847824193899167744/J1Teh4Di_400x400.jpg" -- must end with .jpg or .png
 
 
 local staff = "taz.staff"
@@ -67,5 +68,5 @@ function sendToDiscord(name, message)
             },
         }
     }
-  PerformHttpRequest(DISCORD_URL, function(err, text, headers) end, 'POST', json.encode({username = DISCORD_NAME, embeds = connect}), { ['Content-Type'] = 'application/json' })
+  PerformHttpRequest(DISCORD_URL, function(err, text, headers) end, 'POST', json.encode({username = DISCORD_NAME, embeds = connect, avatar_url = DISCORD_IMAGE}), { ['Content-Type'] = 'application/json' })
 end
